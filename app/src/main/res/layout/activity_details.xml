@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.cordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:theme="@style/AppTheme.Base"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/details_content"
     android:layout_width="match_parent"
@@ -44,4 +45,4 @@
         />
 </android.support.design.widget.CollapsingToolbarLayout>
     <include layout="@layout/content_details"/>
-</android.support.design.widget.cordinatorLayout>
+</android.support.design.widget.CoordinatorLayout>

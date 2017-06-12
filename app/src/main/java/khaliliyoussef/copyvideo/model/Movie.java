@@ -3,23 +3,39 @@ package khaliliyoussef.copyvideo.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class Movie implements Parcelable {
 
+    @SerializedName("adult")
     private Boolean mAdult;
+    @SerializedName("backdrop_path")
     private String mBackdropPath;
+    @SerializedName("genre_ids")
     private List<Long> mGenreIds;
+    @SerializedName("id")
     private Long mId;
+    @SerializedName("original_language")
     private String mOriginalLanguage;
+    @SerializedName("original_title")
     private String mOriginalTitle;
+    @SerializedName("overview")
     private String mOverview;
+    @SerializedName("popularity")
     private Double mPopularity;
+    @SerializedName("poster_path")
     private String mPosterPath;
+    @SerializedName("release_date")
     private String mReleaseDate;
+    @SerializedName("title")
     private String mTitle;
+    @SerializedName("video")
     private Boolean mVideo;
+    @SerializedName("vote_average")
     private Double mVoteAverage;
+    @SerializedName("vote_count")
     private Long mVoteCount;
 
     //TODO (1) Write the implementation of this constructor

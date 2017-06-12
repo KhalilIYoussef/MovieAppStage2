@@ -44,6 +44,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
                         Movie ClickDataItems = movies.get(position);
                         Intent intent = new Intent(context, DetailsActivity.class);
                         intent.putExtra(Intent.EXTRA_TEXT, movies.get(position));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
                         Toast.makeText(v.getContext(), "you clicked" + ClickDataItems.getOriginalTitle(), Toast.LENGTH_SHORT).show();
                     }

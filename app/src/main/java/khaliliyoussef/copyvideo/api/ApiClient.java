@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by Khalil on 6/8/2017.
  */
-public class Client {
+public class ApiClient {
 
     public static final String BASE_URL = "http://api.themoviedb.org/3/";
     private static Retrofit retrofit = null;
