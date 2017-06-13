@@ -38,7 +38,7 @@
     android:id="@+id/cardRating"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@id/titleDetails"
+        android:layout_below="@id/cardTitle"
     android:paddingBottom="@dimen/user_rating_padding_bottom"
     android:paddingLeft="@dimen/movie_title_padding"
     android:paddingRight="@dimen/movie_title_padding"

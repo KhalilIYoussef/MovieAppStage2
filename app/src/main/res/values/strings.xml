@@ -10,5 +10,7 @@
     <string name="pref_sort_order_key">Sort Order</string>
     <string name="pref_most_popular">Most Popular</string>
     <string name="pref_highest_rated">Highest Rated</string>
+    <string name="pref_favorite" >Favourite Movies</string>
     <string name="reviews" />
+
 </resources>
