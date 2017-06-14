@@ -1,4 +1,5 @@
 package khaliliyoussef.copyvideo;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,13 @@ import khaliliyoussef.copyvideo.model.TrailerResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static khaliliyoussef.copyvideo.data.MoviesContract.CONTENT_URI;
+import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID;
+import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_OVERVIEW;
+import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_POSTER_PATH;
+import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_RATING;
+import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_TITLE;
 
 public class DetailsActivity extends AppCompatActivity {
     Movie movie;
@@ -56,7 +64,13 @@ TextView title, overView, rating,releaseDate;
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ContentValues values=null;
+                values.put(COLUMN_TITLE,movie.getOriginalTitle());
+                values.put(COLUMN_OVERVIEW,movie.getOverview());
+                values.put(COLUMN_RATING,movie.getVoteAverage());
+                values.put(COLUMN_POSTER_PATH,movie.getPosterPath());
+                values.put(COLUMN_MOVIE_ID,movie.getId());
+                getContentResolver().insert(CONTENT_URI,values);
             }
         });
         if(movie!=null)

@@ -12,22 +12,21 @@ import android.support.v7.preference.PreferenceFragmentCompat;
  *
  * Created by Khalil on 6/8/2017.
  */
+public class SettingsActivity extends PreferenceActivity {
 
-public class SettingsActivity extends PreferenceActivity
-{
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-getFragmentManager().beginTransaction().replace(android.R.id.content,new SettingsFragment()).commit();
-
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
     }
 
-    public static class SettingsFragment extends PreferenceFragment {
+    public static class MyPreferenceFragment extends PreferenceFragment
+    {
         @Override
-        public void onCreate(@Nullable Bundle savedInstanceState) {
+        public void onCreate(final Bundle savedInstanceState)
+        {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.prefrence);
+            addPreferencesFromResource(R.xml.preference);
         }
     }
 

@@ -31,7 +31,8 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
                 TextView cardRating;
         ImageView cardImage;
 
-        public MovieViewHolder(View v) {
+        public MovieViewHolder(View v)
+        {
             super(v);
             cardTitle = (TextView) v.findViewById(R.id.cardTitle);
             cardRating = (TextView) v.findViewById(R.id.cardRating);

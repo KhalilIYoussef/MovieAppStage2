@@ -1,29 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
+        android:key="@string/pref_sort_order_key"
         android:defaultValue="@string/pref_most_popular"
         android:entries="@array/pref_sort_order"
         android:entryValues="@array/pref_sort_order"
-        android:key="@string/pref_sort_order_key"
         android:title="@string/pref_sort_order_label">
-
     </ListPreference>
-    <EditTextPreference
+    <EditTextPreference android:title="Your Name"
         android:key="username"
-        android:summary="Please provide your username"
-        android:title="Your Name">
-
+        android:summary="Please provide your username">
     </EditTextPreference>
-    <CheckBoxPreference
+    <CheckBoxPreference android:title="Application Updates"
         android:defaultValue="false"
-        android:key="applicationUpdates"
         android:summary="This option if selected will allow the application to check for latest versions."
-        android:title="Application Updates" />
-    <ListPreference
+        android:key="applicationUpdates" />
+    <ListPreference     android:title="Download Details"
+        android:summary="Select the kind of data that you would like to download"
+        android:key="downloadType"
         android:defaultValue="1"
         android:entries="@array/listArray"
-        android:entryValues="@array/listValues"
-        android:key="downloadType"
-        android:summary="Select the kind of data that you would like to download"
-        android:title="Download Details" />
+        android:entryValues="@array/listValues" />
 </PreferenceScreen>
