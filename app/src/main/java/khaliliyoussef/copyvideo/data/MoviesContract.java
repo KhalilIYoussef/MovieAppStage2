@@ -13,12 +13,13 @@ public class MoviesContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
 
-    public static final String PATH_FAVOURITE_MOVIES = "favourite_movies";
+    public static final String PATH_FAVOURITE_MOVIES = "favorite";
 
 
 
 
-        public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon()
                 .appendPath(PATH_FAVOURITE_MOVIES)
                 .build();
         public static class FavouriteMoviesEntry implements BaseColumns {

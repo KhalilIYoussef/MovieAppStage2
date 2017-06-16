@@ -64,7 +64,7 @@ TextView title, overView, rating,releaseDate;
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContentValues values=null;
+                ContentValues values=new ContentValues();
                 values.put(COLUMN_TITLE,movie.getOriginalTitle());
                 values.put(COLUMN_OVERVIEW,movie.getOverview());
                 values.put(COLUMN_RATING,movie.getVoteAverage());

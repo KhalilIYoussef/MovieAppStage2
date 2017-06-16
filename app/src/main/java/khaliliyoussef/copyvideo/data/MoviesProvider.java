@@ -4,12 +4,16 @@ import android.annotation.TargetApi;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
+
+import khaliliyoussef.copyvideo.MainActivity;
 
 /**
  * Created by khalil on 12/6/2017.
@@ -19,14 +23,16 @@ public class MoviesProvider extends ContentProvider {
 
     static final int CODE_FAVOURITE_MOVIES = 100;
     static final int CODE_FAVOURITE_MOVIES_ID = 101;
+
     private static final UriMatcher sUriMatcher = buildUriMatcher();
     private MoviesDbHelper mOpenHelper;
 
-    static UriMatcher buildUriMatcher() {
+    static UriMatcher buildUriMatcher()
+    {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = MoviesContract.CONTENT_AUTHORITY;
 
-
+//khaliliyoussef.copyvideo.data/favorite
         matcher.addURI(authority, MoviesContract.PATH_FAVOURITE_MOVIES, CODE_FAVOURITE_MOVIES);
         matcher.addURI(authority, MoviesContract.PATH_FAVOURITE_MOVIES + "/#", CODE_FAVOURITE_MOVIES_ID);
 
@@ -36,7 +42,9 @@ public class MoviesProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        mOpenHelper = new MoviesDbHelper(getContext());
+
+        Context context=getContext();
+        mOpenHelper = new MoviesDbHelper(context);
         return true;
     }
 
@@ -59,17 +67,17 @@ public class MoviesProvider extends ContentProvider {
                         sortOrder);
 
                 break;
-            case CODE_FAVOURITE_MOVIES_ID:
-                selection = MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID + " = ?";
-                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-                mCursor = database.query(MoviesContract.FavouriteMoviesEntry.TABLE_NAME,
-                        projection,
-                        selection,
-                        selectionArgs,
-                        null,
-                        null,
-                        sortOrder);
-                break;
+//            case CODE_FAVOURITE_MOVIES_ID:
+//                selection = MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID + " = ?";
+//                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
+//                mCursor = database.query(MoviesContract.FavouriteMoviesEntry.TABLE_NAME,
+//                        projection,
+//                        selection,
+//                        selectionArgs,
+//                        null,
+//                        null,
+//                        sortOrder);
+//                break;
             default:
                 throw new IllegalStateException("cant Query this URI ! ");
 
@@ -128,7 +136,8 @@ public class MoviesProvider extends ContentProvider {
                 // Insert new values into the database
                 // Inserting values into tasks table
                 long id = db.insert(MoviesContract.FavouriteMoviesEntry.TABLE_NAME, null, values);
-                if ( id > 0 ) {
+                if ( id > 0 )
+                {
                     returnUri = ContentUris.withAppendedId(MoviesContract.CONTENT_URI, id);
                 } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
@@ -136,8 +145,11 @@ public class MoviesProvider extends ContentProvider {
                 break;
             // Set the value for the returnedUri and write the default case for unknown URI's
             // Default case throws an UnsupportedOperationException
-            default:
-                throw new UnsupportedOperationException("Unknown uri: " + uri);
+            default: {
+                throw new UnsupportedOperationException("Unknown uri:  " + uri);
+
+
+            }
         }
 
         // Notify the resolver if the uri has been changed, and return the newly inserted URI
