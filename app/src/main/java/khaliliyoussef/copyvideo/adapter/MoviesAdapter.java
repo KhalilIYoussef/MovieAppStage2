@@ -71,6 +71,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         holder.cardTitle.setText(movies.get(position).getOriginalTitle());
         holder.cardRating.setText(String.valueOf(movies.get(position).getVoteAverage()));
         Picasso.with(context).load(movies.get(position).getPosterPath())
+                .placeholder(R.mipmap.ic_launcher)
                 .into(holder.cardImage);
 
     }

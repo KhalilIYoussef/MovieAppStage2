@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 //        recyclerView.setAdapter(adapter);
         // adapter.notifyDataChanged();
 
-        if (API_KEY.isEmpty()) {
+        if (API_KEY.isEmpty())
+        {
             Toast.makeText(getApplicationContext(), "Please obtain your API KEY ", Toast.LENGTH_LONG).show();
             return;
         }
@@ -193,23 +194,23 @@ else if(sortOrder.equals(getString(R.string.pref_favorite)))
         List <Movie> movies=new ArrayList<>();
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                for (int i = 0; i < cursor.getCount(); i++) {
-                   String title =cursor.getString(cursor.getColumnIndex(COLUMN_TITLE));
+                for (int i = 0; i < cursor.getCount(); i++)
+                {
+
+                    String title =cursor.getString(cursor.getColumnIndex(COLUMN_TITLE));
                     String overview =cursor.getString(cursor.getColumnIndex(COLUMN_OVERVIEW));
                     Double rating  = cursor.getDouble(cursor.getColumnIndex(COLUMN_RATING));
                     long movie_id  =  cursor.getLong(cursor.getColumnIndex(COLUMN_MOVIE_ID));
                     String poster_path   = cursor.getString(cursor.getColumnIndex(COLUMN_POSTER_PATH));
 
                     Movie movie=new Movie();
-
                     movie.setOriginalTitle(title);
                     movie.setOverview(overview);
                     movie.setVoteAverage(rating);
                     movie.setId(movie_id);
                     movie.setPosterPath(poster_path);
-                    movies.add(i,movie);
-
-
+                    movies.add(movie);
+                    cursor.moveToNext();
                 }
             }
         }
