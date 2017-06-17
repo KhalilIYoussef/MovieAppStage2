@@ -41,7 +41,6 @@ import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.
 import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_POSTER_PATH;
 import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_RATING;
 import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_TITLE;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.TABLE_NAME;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private RecyclerView recyclerView;
