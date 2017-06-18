@@ -1,13 +1,9 @@
-package khaliliyoussef.copyvideo;
+package khaliliyoussef.khalilmovie;
 
 import android.app.Application;
 import android.content.Context;
 
-import com.facebook.stetho.DumperPluginsProvider;
 import com.facebook.stetho.Stetho;
-import com.facebook.stetho.dumpapp.DumperPlugin;
-
-import java.util.ArrayList;
 
 /**
  * Created by Khalil on 6/5/2017.

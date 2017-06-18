@@ -1,4 +1,4 @@
-package khaliliyoussef.copyvideo;
+package khaliliyoussef.khalilmovie;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

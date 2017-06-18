@@ -1,4 +1,4 @@
-package khaliliyoussef.copyvideo.adapter;
+package khaliliyoussef.khalilmovie.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import java.util.List;
-import khaliliyoussef.copyvideo.R;
-import khaliliyoussef.copyvideo.model.Review;
+import khaliliyoussef.khalilmovie.R;
+import khaliliyoussef.khalilmovie.model.Review;
 
 /**
  * Created by Khalil on 6/8/2017.

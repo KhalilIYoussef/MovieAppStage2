@@ -1,4 +1,4 @@
-package khaliliyoussef.copyvideo;
+package khaliliyoussef.khalilmovie;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,25 +13,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 import java.util.List;
-import khaliliyoussef.copyvideo.adapter.ReviewAdapter;
-import khaliliyoussef.copyvideo.adapter.TrailerAdapter;
-import khaliliyoussef.copyvideo.api.ApiClient;
-import khaliliyoussef.copyvideo.api.ApiInterface;
-import khaliliyoussef.copyvideo.model.Movie;
-import khaliliyoussef.copyvideo.model.Review;
-import khaliliyoussef.copyvideo.model.ReviewResponse;
-import khaliliyoussef.copyvideo.model.Trailer;
-import khaliliyoussef.copyvideo.model.TrailerResponse;
+import khaliliyoussef.khalilmovie.adapter.ReviewAdapter;
+import khaliliyoussef.khalilmovie.adapter.TrailerAdapter;
+import khaliliyoussef.khalilmovie.api.ApiClient;
+import khaliliyoussef.khalilmovie.api.ApiInterface;
+import khaliliyoussef.khalilmovie.model.Movie;
+import khaliliyoussef.khalilmovie.model.Review;
+import khaliliyoussef.khalilmovie.model.ReviewResponse;
+import khaliliyoussef.khalilmovie.model.Trailer;
+import khaliliyoussef.khalilmovie.model.TrailerResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static khaliliyoussef.copyvideo.data.MoviesContract.CONTENT_URI;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_OVERVIEW;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_POSTER_PATH;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_RATING;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_TITLE;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.CONTENT_URI;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_OVERVIEW;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_POSTER_PATH;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_RATING;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_TITLE;
 
 public class DetailsActivity extends AppCompatActivity {
     Movie movie;

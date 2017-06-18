@@ -1,4 +1,4 @@
-package khaliliyoussef.copyvideo.data;
+package khaliliyoussef.khalilmovie.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MoviesDbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 8;
 
-    private static final String DATABASE_NAME = "weather.db";
+    private static final String DATABASE_NAME = "movie.db";
 
     public MoviesDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

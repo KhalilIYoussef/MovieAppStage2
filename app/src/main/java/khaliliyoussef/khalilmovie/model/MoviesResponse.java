@@ -1,4 +1,4 @@
-package khaliliyoussef.copyvideo.model;
+package khaliliyoussef.khalilmovie.model;
 
 import com.google.gson.annotations.SerializedName;
 

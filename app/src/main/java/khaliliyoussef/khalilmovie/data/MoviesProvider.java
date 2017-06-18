@@ -1,6 +1,5 @@
-package khaliliyoussef.copyvideo.data;
+package khaliliyoussef.khalilmovie.data;
 
-import android.annotation.TargetApi;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -11,9 +10,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
-
-import khaliliyoussef.copyvideo.MainActivity;
 
 /**
  * Created by khalil on 12/6/2017.
@@ -32,7 +28,7 @@ public class MoviesProvider extends ContentProvider {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = MoviesContract.CONTENT_AUTHORITY;
 
-//khaliliyoussef.copyvideo.data/favorite
+//khaliliyoussef.khalilmovie.data/favorite
         matcher.addURI(authority, MoviesContract.PATH_FAVOURITE_MOVIES, CODE_FAVOURITE_MOVIES);
         matcher.addURI(authority, MoviesContract.PATH_FAVOURITE_MOVIES + "/#", CODE_FAVOURITE_MOVIES_ID);
 

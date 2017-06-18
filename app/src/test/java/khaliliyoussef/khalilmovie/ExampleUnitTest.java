@@ -1,4 +1,4 @@
-package khaliliyoussef.copyvideo;
+package khaliliyoussef.khalilmovie;
 
 import org.junit.Test;
 

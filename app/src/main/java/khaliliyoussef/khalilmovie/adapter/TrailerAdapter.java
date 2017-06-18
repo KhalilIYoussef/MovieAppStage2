@@ -1,4 +1,4 @@
-package khaliliyoussef.copyvideo.adapter;
+package khaliliyoussef.khalilmovie.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,16 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import khaliliyoussef.copyvideo.DetailsActivity;
-import khaliliyoussef.copyvideo.R;
-import khaliliyoussef.copyvideo.model.Movie;
-import khaliliyoussef.copyvideo.model.Trailer;
+import khaliliyoussef.khalilmovie.R;
+import khaliliyoussef.khalilmovie.model.Trailer;
 
 /**
  * Created by Khalil on 6/8/2017.

@@ -1,17 +1,14 @@
-package khaliliyoussef.copyvideo;
+package khaliliyoussef.khalilmovie;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.preference.PreferenceManager;
-import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.preference.ListPreference;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,21 +23,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import khaliliyoussef.copyvideo.adapter.MoviesAdapter;
-import khaliliyoussef.copyvideo.api.ApiClient;
-import khaliliyoussef.copyvideo.api.ApiInterface;
-import khaliliyoussef.copyvideo.model.Movie;
-import khaliliyoussef.copyvideo.model.MoviesResponse;
+import khaliliyoussef.khalilmovie.adapter.MoviesAdapter;
+import khaliliyoussef.khalilmovie.api.ApiClient;
+import khaliliyoussef.khalilmovie.api.ApiInterface;
+import khaliliyoussef.khalilmovie.model.Movie;
+import khaliliyoussef.khalilmovie.model.MoviesResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static khaliliyoussef.copyvideo.data.MoviesContract.CONTENT_URI;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_OVERVIEW;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_POSTER_PATH;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_RATING;
-import static khaliliyoussef.copyvideo.data.MoviesContract.FavouriteMoviesEntry.COLUMN_TITLE;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.CONTENT_URI;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_OVERVIEW;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_POSTER_PATH;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_RATING;
+import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_TITLE;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
     private RecyclerView recyclerView;

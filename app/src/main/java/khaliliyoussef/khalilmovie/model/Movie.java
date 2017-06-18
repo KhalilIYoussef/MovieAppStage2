@@ -1,4 +1,4 @@
-package khaliliyoussef.copyvideo.model;
+package khaliliyoussef.khalilmovie.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

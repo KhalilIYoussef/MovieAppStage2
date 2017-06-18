@@ -1,9 +1,8 @@
-package khaliliyoussef.copyvideo.api;
+package khaliliyoussef.khalilmovie.api;
 
-import khaliliyoussef.copyvideo.adapter.MoviesAdapter;
-import khaliliyoussef.copyvideo.model.MoviesResponse;
-import khaliliyoussef.copyvideo.model.ReviewResponse;
-import khaliliyoussef.copyvideo.model.TrailerResponse;
+import khaliliyoussef.khalilmovie.model.MoviesResponse;
+import khaliliyoussef.khalilmovie.model.ReviewResponse;
+import khaliliyoussef.khalilmovie.model.TrailerResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
