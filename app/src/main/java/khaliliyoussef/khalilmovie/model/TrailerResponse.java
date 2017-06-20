@@ -17,16 +17,32 @@ public class TrailerResponse {
         return mId;
     }
 
-    public void setId(Long id) {
-        mId = id;
-    }
-
     public List<Trailer> getResults() {
         return mResults;
     }
 
-    public void setResults(List<Trailer> results) {
-        mResults = results;
+    public static class Builder {
+
+        private Long mId;
+        private List<Trailer> mResults;
+
+        public TrailerResponse.Builder withId(Long id) {
+            mId = id;
+            return this;
+        }
+
+        public TrailerResponse.Builder withResults(List<Trailer> results) {
+            mResults = results;
+            return this;
+        }
+
+        public TrailerResponse build() {
+            TrailerResponse TrailerResponse = new TrailerResponse();
+            TrailerResponse.mId = mId;
+            TrailerResponse.mResults = mResults;
+            return TrailerResponse;
+        }
+
     }
 
 }

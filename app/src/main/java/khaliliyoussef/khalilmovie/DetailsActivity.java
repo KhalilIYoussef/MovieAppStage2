@@ -80,8 +80,10 @@ TextView title, overView, rating,releaseDate;
             overView.setText(movie.getOverview());
             releaseDate.setText(movie.getReleaseDate());
             rating.setText(String.valueOf(movie.getVoteAverage() + "/10"));
-            Picasso.with(this).load( movie.getPosterPath())
-                    .placeholder(R.mipmap.ic_launcher).into(imageView);
+            Picasso.with(this)
+                    .load( movie.getPosterPath())
+                    .placeholder(R.mipmap.ic_launcher)
+                    .into(imageView);
 
         }
         else

@@ -41,7 +41,7 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MovieVie
                     if (position != RecyclerView.NO_POSITION) {
                         Trailer trailer=trailers.get(position);
                         String videoKey=trailer.getKey();
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:"+videoKey));
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v="+videoKey));
                         intent.putExtra("VIDEO_ID", videoKey);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intent);
