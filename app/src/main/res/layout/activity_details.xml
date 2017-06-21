@@ -59,12 +59,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="10dp" />
 
-                <ImageButton
+                <ToggleButton
                     android:id="@+id/ib_favorite"
                     android:layout_width="wrap_content"
+                    android:textOn="Favorute"
+                    android:textOff="Not favorite"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@android:drawable/btn_star_big_off" />
+                    android:src="@android:drawable/btn_star_big_off"
+                    android:text="ToggleButton" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -74,6 +78,8 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             tools:text="overview" />
+
+
 
         <TextView
             android:id="@+id/textView"

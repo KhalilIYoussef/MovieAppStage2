@@ -22,13 +22,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MovieViewH
 
 
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        TextView reviewAuthor;
+        //TextView reviewAuthor;
                 TextView reviewDetails;
 
 
         public MovieViewHolder(View v) {
             super(v);
-            reviewAuthor = (TextView) v.findViewById(R.id.review_author);
+         //   reviewAuthor = (TextView) v.findViewById(R.id.review_author);
             reviewDetails = (TextView) v.findViewById(R.id.review_details);
 
         }
@@ -49,7 +49,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MovieViewH
     @Override
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
 
-        holder.reviewAuthor.setText(reviews.get(position).getAuthor());
+    //    holder.reviewAuthor.setText(reviews.get(position).getAuthor());
         holder.reviewDetails.setText(reviews.get(position).getContent());
 
 

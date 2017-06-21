@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     ProgressDialog pd;
     private SwipeRefreshLayout swipeContainer;
     Toolbar toolbar;
-    Parcelable recyclerViewState;
+
     RecyclerView.LayoutManager manager;
     public static final String LOG_TAG = MoviesAdapter.class.getSimpleName();
     private final static String API_KEY = BuildConfig.API_KEY;
@@ -155,7 +155,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 Toast.makeText(MainActivity.this, " " + movies.get(0).getOriginalTitle(), Toast.LENGTH_SHORT).show();
                 recyclerView.setAdapter(new MoviesAdapter(getApplicationContext(), movies));
                 recyclerView.smoothScrollToPosition(0);
-                if (swipeContainer.isRefreshing()) {
+                if (swipeContainer.isRefreshing())
+                {
                     swipeContainer.setRefreshing(false);
                 }
                 pd.dismiss();
@@ -183,7 +184,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         recyclerView.setAdapter(new FavoriteAdapter(getApplicationContext(), cursor));
         recyclerView.smoothScrollToPosition(0);
-        if (swipeContainer.isRefreshing()) {
+        if (swipeContainer.isRefreshing())
+        {
             swipeContainer.setRefreshing(false);
         }
 

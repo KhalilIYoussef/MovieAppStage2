@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
+
 import com.squareup.picasso.Picasso;
 import java.util.List;
 import khaliliyoussef.khalilmovie.adapter.ReviewAdapter;
@@ -38,7 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
     Movie movie;
 TextView title, overView, rating,releaseDate;
     ImageView imageView;
-    ImageButton imageButton;
+    ToggleButton toggleButton;
     RecyclerView recyclerView;
     RecyclerView reviewsRecyclers;
     @Override
@@ -54,7 +55,7 @@ TextView title, overView, rating,releaseDate;
         releaseDate= (TextView) findViewById(R.id.details_relase_date);
         recyclerView= (RecyclerView) findViewById(R.id.details_trailer);
         reviewsRecyclers= (RecyclerView) findViewById(R.id.details_review);
-        imageButton= (ImageButton) findViewById(R.id.ib_favorite);
+        toggleButton = (ToggleButton) findViewById(R.id.ib_favorite);
         RecyclerView.LayoutManager layoutManager= new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         RecyclerView.LayoutManager manager= new LinearLayoutManager(getApplicationContext());
@@ -63,31 +64,72 @@ TextView title, overView, rating,releaseDate;
         Intent intent = getIntent();
         movie=intent.getParcelableExtra(Intent.EXTRA_TEXT);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
+if(CheckFavorite())
+{
+    //it's favorite
+    toggleButton.setChecked(true);
 
-                Cursor c=getContentResolver().query(CONTENT_URI,null,COLUMN_MOVIE_ID+"=?",new String[]{String.valueOf(movie.getId())},null);
+    toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+        {
+            toggleButton.setChecked(false);
+            getContentResolver().delete(CONTENT_URI,
+                    COLUMN_MOVIE_ID+"=?",
+                    new String[]{String.valueOf(movie.getId())}
+            );
+        }
+    });
+}
+else
+{
+//it's not favorite
+    toggleButton.setChecked(false);
 
-                if(!c.isNull(c.getColumnIndex(COLUMN_MOVIE_ID)))
-                {
-                    imageButton.setImageResource(R.drawable.ic_star_black_24dp);
-                    ContentValues values = new ContentValues();
-                    values.put(COLUMN_TITLE, movie.getOriginalTitle());
-                    values.put(COLUMN_OVERVIEW, movie.getOverview());
-                    values.put(COLUMN_RATING, movie.getVoteAverage());
-                    values.put(COLUMN_POSTER_PATH, movie.getPosterPath());
-                    values.put(COLUMN_MOVIE_ID, movie.getId());
-                    getContentResolver().insert(CONTENT_URI, values);
-                }
-                else
-                    {
-                        imageButton.setImageResource(R.drawable.ic_star_border_black_24dp);
-                       getContentResolver().delete(CONTENT_URI,COLUMN_MOVIE_ID+"=?",new String[]{String.valueOf(movie.getId())});
-                    }
-            }
-        });
+    toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+        {
+            toggleButton.setChecked(true);
+            ContentValues values = new ContentValues();
+                values.put(COLUMN_TITLE, movie.getOriginalTitle());
+                values.put(COLUMN_OVERVIEW, movie.getOverview());
+                values.put(COLUMN_RATING, movie.getVoteAverage());
+                values.put(COLUMN_POSTER_PATH, movie.getPosterPath());
+                values.put(COLUMN_MOVIE_ID, movie.getId());
+                getContentResolver().insert(CONTENT_URI, values);
+
+        }
+    });
+}
+
+////
+//   //     Cursor c=getContentResolver().query(CONTENT_URI, new String[]{COLUMN_MOVIE_ID},COLUMN_MOVIE_ID+"=?",new String[]{String.valueOf(movie.getId())},null);
+//    //    long s= c.getLong(c.getColumnIndex(COLUMN_MOVIE_ID));
+//        if(toggleButton.isChecked())
+//        { //toggleButton.(R.drawable.ic_star_black_24dp);
+//            toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+//            {
+//                @Override
+//                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+//                {
+//                  //  toggleButton.setBackground(R.drawable.ic_star_border_black_24dp);
+//                    getContentResolver().delete(CONTENT_URI, COLUMN_MOVIE_ID + "=?", new String[]{String.valueOf(movie.getId())});
+//
+//                }
+//        });
+//        }
+//        else
+//            {
+//                //toggleButton.setBackground(R.drawable.ic_star_black_24dp);
+//                ContentValues values = new ContentValues();
+//                values.put(COLUMN_TITLE, movie.getOriginalTitle());
+//                values.put(COLUMN_OVERVIEW, movie.getOverview());
+//                values.put(COLUMN_RATING, movie.getVoteAverage());
+//                values.put(COLUMN_POSTER_PATH, movie.getPosterPath());
+//                values.put(COLUMN_MOVIE_ID, movie.getId());
+//                getContentResolver().insert(CONTENT_URI, values);
+//            }
         if(movie!=null)
         {
 
@@ -116,7 +158,25 @@ TextView title, overView, rating,releaseDate;
 
     }
 
+    private boolean CheckFavorite()
+    {
+        Cursor cursor = getContentResolver().query(CONTENT_URI,
+                new String[]{COLUMN_MOVIE_ID},
+                COLUMN_MOVIE_ID + "=?",
+                new String[]{String.valueOf(movie.getId())},
+                null);
 
+        if ((cursor != null) && (cursor.getCount() > 0))
+        {
+            Toast.makeText(this, "cursor=" + cursor.toString(), Toast.LENGTH_SHORT).show();
+        return true;
+        }
+        else
+        {
+           return false;
+        }
+
+    }
 
 
     private void LoadTrailerJSON(long id)
@@ -179,7 +239,6 @@ TextView title, overView, rating,releaseDate;
 
 
     }
-
 
 
 }

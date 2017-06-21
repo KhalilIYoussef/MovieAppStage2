@@ -90,9 +90,9 @@ public class MoviesProvider extends ContentProvider {
 
         switch (sUriMatcher.match(uri)) {
 
-            case CODE_FAVOURITE_MOVIES_ID:
+            case CODE_FAVOURITE_MOVIES:
                 selection = MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID + "=?";
-                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
+               // selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 numRowsDeleted = mOpenHelper.getWritableDatabase().delete(
                         MoviesContract.FavouriteMoviesEntry.TABLE_NAME,
                         selection,
