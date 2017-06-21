@@ -1,6 +1,7 @@
 package khaliliyoussef.khalilmovie;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -61,16 +62,30 @@ TextView title, overView, rating,releaseDate;
         //get the movie from the MainActivity
         Intent intent = getIntent();
         movie=intent.getParcelableExtra(Intent.EXTRA_TEXT);
+
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                ContentValues values=new ContentValues();
-                values.put(COLUMN_TITLE,movie.getOriginalTitle());
-                values.put(COLUMN_OVERVIEW,movie.getOverview());
-                values.put(COLUMN_RATING,movie.getVoteAverage());
-                values.put(COLUMN_POSTER_PATH,movie.getPosterPath());
-                values.put(COLUMN_MOVIE_ID,movie.getId());
-                getContentResolver().insert(CONTENT_URI,values);
+            public void onClick(View v)
+            {
+
+                Cursor c=getContentResolver().query(CONTENT_URI,null,COLUMN_MOVIE_ID+"=?",new String[]{String.valueOf(movie.getId())},null);
+
+                if(!c.isNull(c.getColumnIndex(COLUMN_MOVIE_ID)))
+                {
+                    imageButton.setImageResource(R.drawable.ic_star_black_24dp);
+                    ContentValues values = new ContentValues();
+                    values.put(COLUMN_TITLE, movie.getOriginalTitle());
+                    values.put(COLUMN_OVERVIEW, movie.getOverview());
+                    values.put(COLUMN_RATING, movie.getVoteAverage());
+                    values.put(COLUMN_POSTER_PATH, movie.getPosterPath());
+                    values.put(COLUMN_MOVIE_ID, movie.getId());
+                    getContentResolver().insert(CONTENT_URI, values);
+                }
+                else
+                    {
+                        imageButton.setImageResource(R.drawable.ic_star_border_black_24dp);
+                       getContentResolver().delete(CONTENT_URI,COLUMN_MOVIE_ID+"=?",new String[]{String.valueOf(movie.getId())});
+                    }
             }
         });
         if(movie!=null)
@@ -80,6 +95,7 @@ TextView title, overView, rating,releaseDate;
             overView.setText(movie.getOverview());
             releaseDate.setText(movie.getReleaseDate());
             rating.setText(String.valueOf(movie.getVoteAverage() + "/10"));
+
             Picasso.with(this)
                     .load( movie.getPosterPath())
                     .placeholder(R.mipmap.ic_launcher)
