@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,13 +12,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/details_title"
+            android:id="@+id/title_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="50dp"
             android:textSize="50sp"
-            tools:text="Film Title"
-            android:paddingStart="50dp" />
+            tools:text="Film Title" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,12 +25,12 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/details_image"
+                android:id="@+id/image_details"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
-                tools:src="@mipmap/ic_launcher" />
+                 />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -40,7 +40,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/details_relase_date"
+                    android:id="@+id/release_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
@@ -50,7 +50,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/details_vote_average"
+                    android:id="@+id/vote_average"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="25sp"
@@ -60,49 +60,46 @@
                     android:layout_width="match_parent"
                     android:layout_height="10dp" />
 
-                <ToggleButton
-                    android:id="@+id/ib_favorite"
+                <ImageButton
+                    android:id="@+id/favorite"
                     android:layout_width="wrap_content"
-                    android:textOn="@string/favorute"
-                    android:textOff="@string/not_favorite"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@android:drawable/btn_star_big_off"
-                     />
-
+/>
             </LinearLayout>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/details_overview"
+            android:id="@+id/overview_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
             tools:text="overview" />
 
 
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="Movie Trailer"
-            android:textSize="48sp" />
+            android:text="Movie Trailer"
+            android:textSize="48dp" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/details_trailer"
+            android:id="@+id/trailer_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         </android.support.v7.widget.RecyclerView>
 
         <TextView
-    tools:text="Movie Reviews"
-    android:textSize="48sp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+            android:text="Movie Reviews"
+            android:textSize="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/details_review"
+            android:id="@+id/review_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

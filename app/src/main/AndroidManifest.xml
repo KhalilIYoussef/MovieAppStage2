@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name="khaliliyoussef.khalilmovie.DetailsActivity"/>
-        <activity android:name="khaliliyoussef.khalilmovie.SettingsActivity"/>
         <provider
             android:authorities="khaliliyoussef.khalilmovie.data"
             android:name="khaliliyoussef.khalilmovie.data.MoviesProvider"

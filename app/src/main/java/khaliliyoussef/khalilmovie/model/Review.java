@@ -1,10 +1,7 @@
-
 package khaliliyoussef.khalilmovie.model;
-
 
 import com.google.gson.annotations.SerializedName;
 
-@SuppressWarnings("unused")
 public class Review {
 
     @SerializedName("author")

@@ -38,6 +38,9 @@ public class Movie implements Parcelable {
     @SerializedName("vote_count")
     private Long mVoteCount;
 
+    public Movie(){}
+
+
     //TODO (1) Write the implementation of this constructor
     protected Movie(Parcel in) {
         mOriginalTitle = in.readString();
@@ -66,9 +69,7 @@ public class Movie implements Parcelable {
         return 0;
     }
 
-    public Movie()
-    {
-    }
+
     //TODO (2) write the implementation for this function
     @Override
     public void writeToParcel(Parcel parcel, int i) {
@@ -147,9 +148,16 @@ public class Movie implements Parcelable {
         mPopularity = popularity;
     }
 
+    // ToDo: You are essentially creating
+    // ToDo: http://image.tmdb.org/t/p/w185/http://image.tmdb.org/t/p/w185//tWqifoYuwLETmmasnGHO7xBjEtt.jpg instead of
+    // ToDo: http://image.tmdb.org/t/p/w185/tWqifoYuwLETmmasnGHO7xBjEtt.jpg
     public String getPosterPath() {
-        return "http://image.tmdb.org/t/p/w185/"+mPosterPath;
+        return mPosterPath;
     }
+
+   /* public String getPosterPath() {
+        return "http://image.tmdb.org/t/p/w185/"+mPosterPath;
+    }*/
 
     public void setPosterPath(String posterPath) {
         mPosterPath = posterPath;

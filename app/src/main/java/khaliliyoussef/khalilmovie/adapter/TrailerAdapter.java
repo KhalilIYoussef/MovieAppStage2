@@ -15,25 +15,20 @@ import java.util.List;
 import khaliliyoussef.khalilmovie.R;
 import khaliliyoussef.khalilmovie.model.Trailer;
 
-/**
- * Created by Khalil on 6/8/2017.
- */
-
-public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MovieViewHolder> {
+public class TrailerAdapter  extends RecyclerView.Adapter<TrailerAdapter.MovieViewHolder> {
 
     private static List<Trailer> trailers;
+    private static Context context;
 
-     static Context context;
 
+    public static class MovieViewHolder extends RecyclerView.ViewHolder {
+        TextView trailerTitle;
+        ImageView trailerImage;
 
-   static class MovieViewHolder extends RecyclerView.ViewHolder {
-                TextView trailerTitle;
-                ImageView trailerImage;
-
-         MovieViewHolder(View v) {
+        public MovieViewHolder(View v) {
             super(v);
-            trailerTitle = v.findViewById(R.id.trailer_title);
-            trailerImage = v.findViewById(R.id.trailer_image);
+            trailerTitle = (TextView) v.findViewById(R.id.trailer_title);
+            trailerImage = (ImageView) v.findViewById(R.id.trailer_image);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -52,8 +47,8 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MovieVie
     }
 
     public TrailerAdapter(Context context, List<Trailer> trailers) {
-        TrailerAdapter.trailers = trailers;
-        TrailerAdapter.context = context;
+        this.trailers = trailers;
+        this.context = context;
     }
 
     @Override
@@ -65,10 +60,7 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MovieVie
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
-
         holder.trailerTitle.setText(trailers.get(position).getName());
-
-
     }
 
     @Override

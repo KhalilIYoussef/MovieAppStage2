@@ -11,27 +11,21 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-/**
- * Created by khalil on 12/6/2017.
- */
-
 public class MoviesProvider extends ContentProvider {
 
-    static final int CODE_FAVOURITE_MOVIES = 100;
-    static final int CODE_FAVOURITE_MOVIES_ID = 101;
+    static final int CODE_FAVOURITE_MOVIES = 200;
+    static final int CODE_FAVOURITE_MOVIES_ID = 201;
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
-    private MoviesDbHelper mOpenHelper;
+    private DbHelper mOpenHelper;
 
     static UriMatcher buildUriMatcher()
     {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
-        final String authority = MoviesContract.CONTENT_AUTHORITY;
+        final String authority = Contract.CONTENT_AUTHORITY;
 
-//khaliliyoussef.khalilmovie.data/favorite
-        matcher.addURI(authority, MoviesContract.PATH_FAVOURITE_MOVIES, CODE_FAVOURITE_MOVIES);
-        matcher.addURI(authority, MoviesContract.PATH_FAVOURITE_MOVIES + "/#", CODE_FAVOURITE_MOVIES_ID);
-
+        matcher.addURI(authority, Contract.PATH_FAVOURITE_MOVIES, CODE_FAVOURITE_MOVIES);
+        matcher.addURI(authority, Contract.PATH_FAVOURITE_MOVIES + "/#", CODE_FAVOURITE_MOVIES_ID);
 
         return matcher;
     }
@@ -40,12 +34,11 @@ public class MoviesProvider extends ContentProvider {
     public boolean onCreate() {
 
         Context context=getContext();
-        mOpenHelper = new MoviesDbHelper(context);
+        mOpenHelper = new DbHelper(context);
         return true;
     }
 
 
-    @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Cursor mCursor = null;
@@ -54,26 +47,15 @@ public class MoviesProvider extends ContentProvider {
         switch (match) {
 
             case CODE_FAVOURITE_MOVIES:
-                mCursor = database.query(MoviesContract.FavouriteMoviesEntry.TABLE_NAME,
+                mCursor = database.query(Contract.FavouriteMoviesEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
                         null,
                         null,
                         sortOrder);
+                     break;
 
-                break;
-//            case CODE_FAVOURITE_MOVIES_ID:
-//                selection = MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID + " = ?";
-//                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-//                mCursor = database.query(MoviesContract.FavouriteMoviesEntry.TABLE_NAME,
-//                        projection,
-//                        selection,
-//                        selectionArgs,
-//                        null,
-//                        null,
-//                        sortOrder);
-//                break;
             default:
                 throw new IllegalStateException("cant Query this URI ! ");
 
@@ -91,10 +73,11 @@ public class MoviesProvider extends ContentProvider {
         switch (sUriMatcher.match(uri)) {
 
             case CODE_FAVOURITE_MOVIES:
-                selection = MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID + "=?";
-               // selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
+                selection = Contract.FavouriteMoviesEntry.COLUMN_MOVIE_ID + "=?";
+                // selectionArgs = new String[]
+                // {String.valueOf(ContentUris.parseId(uri))};
                 numRowsDeleted = mOpenHelper.getWritableDatabase().delete(
-                        MoviesContract.FavouriteMoviesEntry.TABLE_NAME,
+                        Contract.FavouriteMoviesEntry.TABLE_NAME,
                         selection,
                         selectionArgs);
                 break;
@@ -120,27 +103,20 @@ public class MoviesProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, ContentValues values) {
-        // Get access to the task database (to write new data to)
         final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-
-        // Write URI matching code to identify the match for the tasks directory
         int match = sUriMatcher.match(uri);
-        Uri returnUri; // URI to be returned
+        Uri returnUri;
 
         switch (match) {
             case CODE_FAVOURITE_MOVIES:
-                // Insert new values into the database
-                // Inserting values into tasks table
-                long id = db.insert(MoviesContract.FavouriteMoviesEntry.TABLE_NAME, null, values);
+                long id = db.insert(Contract.FavouriteMoviesEntry.TABLE_NAME, null, values);
                 if ( id > 0 )
                 {
-                    returnUri = ContentUris.withAppendedId(MoviesContract.CONTENT_URI, id);
+                    returnUri = ContentUris.withAppendedId(Contract.CONTENT_URI, id);
                 } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 }
                 break;
-            // Set the value for the returnedUri and write the default case for unknown URI's
-            // Default case throws an UnsupportedOperationException
             default: {
                 throw new UnsupportedOperationException("Unknown uri:  " + uri);
 
@@ -148,10 +124,7 @@ public class MoviesProvider extends ContentProvider {
             }
         }
 
-        // Notify the resolver if the uri has been changed, and return the newly inserted URI
         getContext().getContentResolver().notifyChange(uri, null);
-
-        // Return constructed uri (this points to the newly inserted row of data)
         return returnUri;
     }
 
@@ -160,7 +133,5 @@ public class MoviesProvider extends ContentProvider {
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         return 0;
     }
-
-
 
 }

@@ -1,10 +1,9 @@
-
 package khaliliyoussef.khalilmovie.model;
 
-import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-@SuppressWarnings("unused")
+import java.util.List;
+
 public class ReviewResponse {
 
     @SerializedName("id")

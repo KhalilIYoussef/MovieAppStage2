@@ -14,5 +14,6 @@
     <string name="reviews" />
     <string name="favorute">Favorite</string>
     <string name="not_favorite">Not favorite</string>
+    <string name="movie_image">movie image</string>
 
 </resources>
