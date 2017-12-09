@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import khaliliyoussef.khalilmovie.R;
-import khaliliyoussef.khalilmovie.data.MoviesContract;
 
 import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID;
 import static khaliliyoussef.khalilmovie.data.MoviesContract.FavouriteMoviesEntry.COLUMN_TITLE;
@@ -83,10 +82,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.GuestV
         TextView movieId;
 
 
-        public GuestViewHolder(View itemView) {
+         GuestViewHolder(View itemView) {
             super(itemView);
-            title = (TextView) itemView.findViewById(R.id.favorite_title);
-            movieId = (TextView) itemView.findViewById(R.id.favorite_id);
+            title =  itemView.findViewById(R.id.favorite_title);
+            movieId = itemView.findViewById(R.id.favorite_id);
         }
 
     }

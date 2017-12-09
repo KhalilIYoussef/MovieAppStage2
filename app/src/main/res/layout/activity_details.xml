@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:paddingLeft="50dp"
             android:textSize="50sp"
-            tools:text="Film Title" />
+            tools:text="Film Title"
+            android:paddingStart="50dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher" />
+                tools:src="@mipmap/ic_launcher" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -62,12 +63,12 @@
                 <ToggleButton
                     android:id="@+id/ib_favorite"
                     android:layout_width="wrap_content"
-                    android:textOn="Favorute"
-                    android:textOff="Not favorite"
+                    android:textOn="@string/favorute"
+                    android:textOff="@string/not_favorite"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@android:drawable/btn_star_big_off"
-                    android:text="ToggleButton" />
+                     />
 
             </LinearLayout>
         </LinearLayout>
@@ -85,8 +86,8 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Movie Trailer"
-            android:textSize="48dp" />
+            tools:text="Movie Trailer"
+            android:textSize="48sp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/details_trailer"
@@ -96,8 +97,8 @@
         </android.support.v7.widget.RecyclerView>
 
         <TextView
-    android:text="Movie Reviews"
-    android:textSize="48dp"
+    tools:text="Movie Reviews"
+    android:textSize="48sp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" />
         <android.support.v7.widget.RecyclerView

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CopyVideo</string>
+    <string name="app_name">Movies APP</string>
     <string name="action_setting">Settings</string>
     <string name="name_movie">Movie Title</string>
     <string name="movie_details">Movie Details</string>
@@ -12,5 +12,7 @@
     <string name="pref_highest_rated">Highest Rated</string>
     <string name="pref_favorite" >Favourite Movies</string>
     <string name="reviews" />
+    <string name="favorute">Favorite</string>
+    <string name="not_favorite">Not favorite</string>
 
 </resources>

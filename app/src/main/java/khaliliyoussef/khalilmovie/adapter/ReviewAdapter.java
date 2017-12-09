@@ -16,20 +16,20 @@ import khaliliyoussef.khalilmovie.model.Review;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MovieViewHolder> {
 
-    private static List<Review> reviews;
+    private List<Review> reviews;
 
-    private static Context context;
+    private  Context context;
 
 
-    public static class MovieViewHolder extends RecyclerView.ViewHolder {
+     static class MovieViewHolder extends RecyclerView.ViewHolder {
         //TextView reviewAuthor;
                 TextView reviewDetails;
 
 
-        public MovieViewHolder(View v) {
+       MovieViewHolder(View v) {
             super(v);
          //   reviewAuthor = (TextView) v.findViewById(R.id.review_author);
-            reviewDetails = (TextView) v.findViewById(R.id.review_details);
+            reviewDetails = v.findViewById(R.id.review_details);
 
         }
     }

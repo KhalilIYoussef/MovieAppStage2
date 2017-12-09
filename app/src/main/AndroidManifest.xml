@@ -8,7 +8,7 @@
     <application
         android:name="khaliliyoussef.khalilmovie.Debug"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_application_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -20,11 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="khaliliyoussef.khalilmovie.DetailsActivity"></activity>
-        <activity android:name="khaliliyoussef.khalilmovie.SettingsActivity"></activity>
+        <activity android:name="khaliliyoussef.khalilmovie.DetailsActivity"/>
+        <activity android:name="khaliliyoussef.khalilmovie.SettingsActivity"/>
         <provider
             android:authorities="khaliliyoussef.khalilmovie.data"
-            android:name="khaliliyoussef.khalilmovie.data.MoviesProvider"/>
+            android:name="khaliliyoussef.khalilmovie.data.MoviesProvider"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -7,10 +7,6 @@
         android:entryValues="@array/pref_sort_order"
         android:title="@string/pref_sort_order_label">
     </ListPreference>
-    <EditTextPreference android:title="Your Name"
-        android:key="username"
-        android:summary="Please provide your username">
-    </EditTextPreference>
     <CheckBoxPreference android:title="Application Updates"
         android:defaultValue="false"
         android:summary="This option if selected will allow the application to check for latest versions."

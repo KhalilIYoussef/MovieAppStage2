@@ -25,17 +25,17 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     private static Context context;
 
 
-    public static class MovieViewHolder extends RecyclerView.ViewHolder {
+     static class MovieViewHolder extends RecyclerView.ViewHolder {
         TextView cardTitle;
                 TextView cardRating;
         ImageView cardImage;
 
-        public MovieViewHolder(View v)
+         MovieViewHolder(View v)
         {
             super(v);
-            cardTitle = (TextView) v.findViewById(R.id.cardTitle);
-            cardRating = (TextView) v.findViewById(R.id.cardRating);
-            cardImage = (ImageView) v.findViewById(R.id.cardImage);
+            cardTitle =  v.findViewById(R.id.cardTitle);
+            cardRating =  v.findViewById(R.id.cardRating);
+            cardImage =  v.findViewById(R.id.cardImage);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -72,7 +72,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         holder.cardTitle.setText(movies.get(position).getOriginalTitle());
         holder.cardRating.setText(String.valueOf(movies.get(position).getVoteAverage()));
         Picasso.with(context).load(movies.get(position).getPosterPath())
-                .placeholder(R.mipmap.ic_launcher)
+                .placeholder(R.drawable.ic_placeholder)
                 .into(holder.cardImage);
 
     }

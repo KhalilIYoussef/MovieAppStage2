@@ -23,17 +23,17 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MovieVie
 
     private static List<Trailer> trailers;
 
-    private static Context context;
+     static Context context;
 
 
-    public static class MovieViewHolder extends RecyclerView.ViewHolder {
+   static class MovieViewHolder extends RecyclerView.ViewHolder {
                 TextView trailerTitle;
                 ImageView trailerImage;
 
-        public MovieViewHolder(View v) {
+         MovieViewHolder(View v) {
             super(v);
-            trailerTitle = (TextView) v.findViewById(R.id.trailer_title);
-            trailerImage = (ImageView) v.findViewById(R.id.trailer_image);
+            trailerTitle = v.findViewById(R.id.trailer_title);
+            trailerImage = v.findViewById(R.id.trailer_image);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -52,8 +52,8 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MovieVie
     }
 
     public TrailerAdapter(Context context, List<Trailer> trailers) {
-        this.trailers = trailers;
-        this.context = context;
+        TrailerAdapter.trailers = trailers;
+        TrailerAdapter.context = context;
     }
 
     @Override
