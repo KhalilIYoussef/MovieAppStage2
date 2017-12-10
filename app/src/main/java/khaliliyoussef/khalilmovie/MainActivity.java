@@ -28,12 +28,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static khaliliyoussef.khalilmovie.data.Contract.CONTENT_URI;
-import static khaliliyoussef.khalilmovie.data.Contract.FavouriteMoviesEntry.COLUMN_MOVIE_ID;
-import static khaliliyoussef.khalilmovie.data.Contract.FavouriteMoviesEntry.COLUMN_OVERVIEW;
-import static khaliliyoussef.khalilmovie.data.Contract.FavouriteMoviesEntry.COLUMN_POSTER_PATH;
-import static khaliliyoussef.khalilmovie.data.Contract.FavouriteMoviesEntry.COLUMN_RATING;
-import static khaliliyoussef.khalilmovie.data.Contract.FavouriteMoviesEntry.COLUMN_TITLE;
+import static khaliliyoussef.khalilmovie.data.MovieContract.CONTENT_URI;
+import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID;
+import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry.COLUMN_OVERVIEW;
+import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry.COLUMN_POSTER_PATH;
+import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry.COLUMN_RATING;
+import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry.COLUMN_TITLE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                Toast.makeText(MainActivity.this, "loading JSON", Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(MainActivity.this, "loading JSON", Toast.LENGTH_SHORT).show();
                 int statusCode = response.code();
                 List<Movie> movies = response.body().getResults();
 

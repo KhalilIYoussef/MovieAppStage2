@@ -3,7 +3,7 @@ Popular Movies App
 
 A simple Android app, that helps user to find popular movies. 
 This is Project 1 & Project 2 of Udacity's Android Developer Nanodegree.
-
+short url  -->  https://git.io/vbB7z
 **Features:**
 
 - Discover the most popular, the highest rated and the most rated movies
@@ -24,10 +24,8 @@ Screenshots
 
 <img width="45%" src=".github/screen1.png" />
 <img width="45%" src=".github/screen2.png" />
-
-<img width="89%" src=".github/screen3.png" />
-
-<img width="90%" src=".github/screen4.png" />
+<img width="45%" src=".github/screen3.png" />
+<img width="45%" src=".github/screen4.png" />
 
 Developer setup
 ---------------

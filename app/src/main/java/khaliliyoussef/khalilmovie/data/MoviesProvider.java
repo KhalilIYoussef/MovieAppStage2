@@ -17,15 +17,15 @@ public class MoviesProvider extends ContentProvider {
     static final int CODE_FAVOURITE_MOVIES_ID = 201;
 
     private static final UriMatcher sUriMatcher = buildUriMatcher();
-    private DbHelper mOpenHelper;
+    private MovieDbHelper mOpenHelper;
 
     static UriMatcher buildUriMatcher()
     {
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
-        final String authority = Contract.CONTENT_AUTHORITY;
+        final String authority = MovieContract.CONTENT_AUTHORITY;
 
-        matcher.addURI(authority, Contract.PATH_FAVOURITE_MOVIES, CODE_FAVOURITE_MOVIES);
-        matcher.addURI(authority, Contract.PATH_FAVOURITE_MOVIES + "/#", CODE_FAVOURITE_MOVIES_ID);
+        matcher.addURI(authority, MovieContract.PATH_FAVOURITE_MOVIES, CODE_FAVOURITE_MOVIES);
+        matcher.addURI(authority, MovieContract.PATH_FAVOURITE_MOVIES + "/#", CODE_FAVOURITE_MOVIES_ID);
 
         return matcher;
     }
@@ -34,7 +34,7 @@ public class MoviesProvider extends ContentProvider {
     public boolean onCreate() {
 
         Context context=getContext();
-        mOpenHelper = new DbHelper(context);
+        mOpenHelper = new MovieDbHelper(context);
         return true;
     }
 
@@ -47,7 +47,7 @@ public class MoviesProvider extends ContentProvider {
         switch (match) {
 
             case CODE_FAVOURITE_MOVIES:
-                mCursor = database.query(Contract.FavouriteMoviesEntry.TABLE_NAME,
+                mCursor = database.query(MovieContract.FavouriteMoviesEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -73,11 +73,11 @@ public class MoviesProvider extends ContentProvider {
         switch (sUriMatcher.match(uri)) {
 
             case CODE_FAVOURITE_MOVIES:
-                selection = Contract.FavouriteMoviesEntry.COLUMN_MOVIE_ID + "=?";
+                selection = MovieContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID + "=?";
                 // selectionArgs = new String[]
                 // {String.valueOf(ContentUris.parseId(uri))};
                 numRowsDeleted = mOpenHelper.getWritableDatabase().delete(
-                        Contract.FavouriteMoviesEntry.TABLE_NAME,
+                        MovieContract.FavouriteMoviesEntry.TABLE_NAME,
                         selection,
                         selectionArgs);
                 break;
@@ -109,10 +109,10 @@ public class MoviesProvider extends ContentProvider {
 
         switch (match) {
             case CODE_FAVOURITE_MOVIES:
-                long id = db.insert(Contract.FavouriteMoviesEntry.TABLE_NAME, null, values);
+                long id = db.insert(MovieContract.FavouriteMoviesEntry.TABLE_NAME, null, values);
                 if ( id > 0 )
                 {
-                    returnUri = ContentUris.withAppendedId(Contract.CONTENT_URI, id);
+                    returnUri = ContentUris.withAppendedId(MovieContract.CONTENT_URI, id);
                 } else {
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 }

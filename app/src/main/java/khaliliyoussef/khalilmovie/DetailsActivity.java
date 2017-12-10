@@ -31,12 +31,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static khaliliyoussef.khalilmovie.data.Contract.CONTENT_URI;
-import static khaliliyoussef.khalilmovie.data.Contract.FavouriteMoviesEntry.COLUMN_MOVIE_ID;
-import static khaliliyoussef.khalilmovie.data.Contract.FavouriteMoviesEntry.COLUMN_OVERVIEW;
-import static khaliliyoussef.khalilmovie.data.Contract.FavouriteMoviesEntry.COLUMN_POSTER_PATH;
-import static khaliliyoussef.khalilmovie.data.Contract.FavouriteMoviesEntry.COLUMN_RATING;
-import static khaliliyoussef.khalilmovie.data.Contract.FavouriteMoviesEntry.COLUMN_TITLE;
+import static khaliliyoussef.khalilmovie.data.MovieContract.CONTENT_URI;
+import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry.COLUMN_MOVIE_ID;
+import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry.COLUMN_OVERVIEW;
+import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry.COLUMN_POSTER_PATH;
+import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry.COLUMN_RATING;
+import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry.COLUMN_TITLE;
 
 public class DetailsActivity extends AppCompatActivity {
     Movie movie;
@@ -120,7 +120,7 @@ public class DetailsActivity extends AppCompatActivity {
             rating.setText(String.valueOf(movie.getVoteAverage() + "/10"));
             Picasso.with(this)
                     .load("http://image.tmdb.org/t/p/w185//"+PosterPath)
-                    .placeholder(R.mipmap.ic_launcher)
+                    .placeholder(R.drawable.ic_placeholder)
                     .into(imageView);
 
         } else {
@@ -142,12 +142,8 @@ public class DetailsActivity extends AppCompatActivity {
                 new String[]{String.valueOf(movie.getId())},
                 null);
 
-        if ((cursor != null) && (cursor.getCount() > 0)) {
-            Toast.makeText(this, "cursor=" + cursor.toString(), Toast.LENGTH_SHORT).show();
-            return true;
-        } else {
-            return false;
-        }
+        //  Toast.makeText(this, "cursor=" + cursor.toString(), Toast.LENGTH_SHORT).show();
+        return (cursor != null) && (cursor.getCount() > 0);
 
     }
 
@@ -159,7 +155,7 @@ public class DetailsActivity extends AppCompatActivity {
         call.enqueue(new Callback<TrailerResponse>() {
             @Override
             public void onResponse(Call<TrailerResponse> call, Response<TrailerResponse> response) {
-                Toast.makeText(DetailsActivity.this, "loading JSON", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(DetailsActivity.this, "loading JSON", Toast.LENGTH_SHORT).show();
                 int statusCode = response.code();
                 List<Trailer> trailers = response.body().getResults();
                 recyclerView.setAdapter(new TrailerAdapter(getApplicationContext(), trailers));
@@ -185,7 +181,7 @@ public class DetailsActivity extends AppCompatActivity {
         call.enqueue(new Callback<ReviewResponse>() {
             @Override
             public void onResponse(Call<ReviewResponse> call, Response<ReviewResponse> response) {
-                Toast.makeText(DetailsActivity.this, "loading JSON", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(DetailsActivity.this, "loading JSON", Toast.LENGTH_SHORT).show();
                 int statusCode = response.code();
                 List<Review> reviews = response.body().getResults();
                 reviewsRecyclers.setAdapter(new ReviewsAdapter(getApplicationContext(), reviews));
