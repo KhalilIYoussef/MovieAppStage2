@@ -4,12 +4,14 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,9 +42,9 @@ import static khaliliyoussef.khalilmovie.data.MovieContract.FavouriteMoviesEntry
 
 public class DetailsActivity extends AppCompatActivity {
     Movie movie;
-    TextView title, overView, rating, releaseDate;
+    TextView overView, rating, releaseDate;
     ImageView imageView;
-    ImageButton imageButton;
+    FloatingActionButton imageButton;
     RecyclerView recyclerView;
     RecyclerView reviewsRecyclers;
 
@@ -50,16 +52,20 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        //initialize toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        final ActionBar title = getSupportActionBar();
+        title.setDisplayHomeAsUpEnabled(true);
 
 
         imageView = (ImageView) findViewById(R.id.image_details);
-        title = (TextView) findViewById(R.id.title_details);
         overView = (TextView) findViewById(R.id.overview_details);
         rating = (TextView) findViewById(R.id.vote_average);
         releaseDate = (TextView) findViewById(R.id.release_date);
         recyclerView = (RecyclerView) findViewById(R.id.trailer_details);
         reviewsRecyclers = (RecyclerView) findViewById(R.id.review_details);
-        imageButton = (ImageButton) findViewById(R.id.favorite);
+        imageButton = (FloatingActionButton) findViewById(R.id.favorite);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getApplicationContext());
@@ -68,14 +74,13 @@ public class DetailsActivity extends AppCompatActivity {
         movie = intent.getParcelableExtra(Intent.EXTRA_TEXT);
 
 
-
         if (CheckFavorite()) {
             //it's favorite
             imageButton.setImageResource(R.drawable.ic_favorite_black_24dp);
             imageButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
-                public   void  onClick(View v) {
+                public void onClick(View v) {
                     imageButton.setImageResource(R.drawable.ic_favorite_border_black_24dp);
                     getContentResolver().delete(CONTENT_URI,
                             COLUMN_MOVIE_ID + "=?",
@@ -102,7 +107,6 @@ public class DetailsActivity extends AppCompatActivity {
                     values.put(COLUMN_MOVIE_ID, movie.getId());
 
 
-
                     getContentResolver().insert(CONTENT_URI, values);
                 }
             });
@@ -114,12 +118,12 @@ public class DetailsActivity extends AppCompatActivity {
             String Title = movie.getOriginalTitle();
             String PosterPath = movie.getPosterPath();
             //Toast.makeText(this, "" + movie.getOriginalTitle(), Toast.LENGTH_SHORT).show();
-            title.setText(String.valueOf(Title));
+            title.setTitle(String.valueOf(Title));
             overView.setText(movie.getOverview());
             releaseDate.setText(movie.getReleaseDate());
             rating.setText(String.valueOf(movie.getVoteAverage() + "/10"));
             Picasso.with(this)
-                    .load("http://image.tmdb.org/t/p/w185//"+PosterPath)
+                    .load("http://image.tmdb.org/t/p/w185//" + PosterPath)
                     .placeholder(R.drawable.ic_placeholder)
                     .into(imageView);
 
@@ -135,7 +139,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
 
-    private synchronized boolean  CheckFavorite() {
+    private synchronized boolean CheckFavorite() {
         Cursor cursor = getContentResolver().query(CONTENT_URI,
                 new String[]{COLUMN_MOVIE_ID},
                 COLUMN_MOVIE_ID + "=?",
@@ -155,7 +159,7 @@ public class DetailsActivity extends AppCompatActivity {
         call.enqueue(new Callback<TrailerResponse>() {
             @Override
             public void onResponse(Call<TrailerResponse> call, Response<TrailerResponse> response) {
-               // Toast.makeText(DetailsActivity.this, "loading JSON", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(DetailsActivity.this, "loading JSON", Toast.LENGTH_SHORT).show();
                 int statusCode = response.code();
                 List<Trailer> trailers = response.body().getResults();
                 recyclerView.setAdapter(new TrailerAdapter(getApplicationContext(), trailers));
@@ -181,7 +185,7 @@ public class DetailsActivity extends AppCompatActivity {
         call.enqueue(new Callback<ReviewResponse>() {
             @Override
             public void onResponse(Call<ReviewResponse> call, Response<ReviewResponse> response) {
-               // Toast.makeText(DetailsActivity.this, "loading JSON", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(DetailsActivity.this, "loading JSON", Toast.LENGTH_SHORT).show();
                 int statusCode = response.code();
                 List<Review> reviews = response.body().getResults();
                 reviewsRecyclers.setAdapter(new ReviewsAdapter(getApplicationContext(), reviews));
@@ -198,6 +202,14 @@ public class DetailsActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    public void intitalizeToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        final ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
     }
 
 }

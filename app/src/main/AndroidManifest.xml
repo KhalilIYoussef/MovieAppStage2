@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="khaliliyoussef.khalilmovie.DetailsActivity"/>
+        <activity android:name="khaliliyoussef.khalilmovie.DetailsActivity"
+            android:parentActivityName=".MainActivity"/>
         <provider
             android:authorities="khaliliyoussef.khalilmovie.data"
             android:name="khaliliyoussef.khalilmovie.data.MoviesProvider"
